@@ -130,13 +130,19 @@ Function Get-HPEntWarrantyEntitlement {
                     }
                 }
                 
-                [HashTable]$output = @{
+                 [HashTable]$output = @{
                     'SerialNumber' = $SerialNumber
                     'ProductNumber' = $ProductNumber
                     'ActiveEntitlement' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.ActiveWarrantyEntitlement
                     'OverallEntitlementStartDate' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.OverallWarrantyStartDate
                     'OverallEntitlementEndDate' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.OverallWarrantyEndDate
-                }
+                    'ActiveContractEntitlement' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.ActiveContractEntitlement
+                    'OverallContractStartDate' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.OverallContractStartDate
+                    'OverallContractEndDate' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.OverallContractEndDate
+                    'SvcAgreementID' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.Contract.SvcAgreementID
+                    'OfferDescription' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.Contract.Offer.OfferDescription
+                    'ResponseTime' = $entitlement.'ISEE-GetOOSEntitlementInfoResponse'.Data.EsReply.CombinedUnitEntitlement.Contract.Offer.Modifier.ModDesc
+		   }
 
                 if ($PSCmdlet.ParameterSetName -eq 'Computer') {
                     $output.Add('ComputerName', $ComputerName[$i])
